@@ -36,17 +36,28 @@ def draw_mondrian(
 
     if can_split_x and can_split_y:
         if randint(0,1) == 0:
-            draw_mondrian(screen, min_rectangle_width, min_rectangle_height, top_left, Vector2(bottom_right[0], y_split))
-            draw_mondrian(screen, min_rectangle_width, min_rectangle_height, Vector2(top_left[0], y_split), bottom_right)
+            tl1 = top_left
+            br1 = Vector2(bottom_right[0], y_split)
+            tl2 = Vector2(top_left[0], y_split)
+            br2 = bottom_right
         else :
-            draw_mondrian(screen, min_rectangle_width, min_rectangle_height, top_left, Vector2(x_split, bottom_right[1]))
-            draw_mondrian(screen, min_rectangle_width, min_rectangle_height, Vector2(x_split, top_left[1]), bottom_right)
+            tl1 = top_left
+            br1 = Vector2(x_split, bottom_right[1])
+            tl2 = Vector2(x_split, top_left[1])
+            br2 = bottom_right
     elif can_split_x:
-        draw_mondrian(screen, min_rectangle_width, min_rectangle_height, top_left, Vector2(x_split, bottom_right[1]))
-        draw_mondrian(screen, min_rectangle_width, min_rectangle_height, Vector2(x_split, top_left[1]), bottom_right)
+        tl1 = top_left
+        br1 = Vector2(x_split, bottom_right[1])
+        tl2 = Vector2(x_split, top_left[1])
+        br2 = bottom_right
     elif can_split_y:
-        draw_mondrian(screen, min_rectangle_width, min_rectangle_height, top_left, Vector2(bottom_right[0], y_split))
-        draw_mondrian(screen, min_rectangle_width, min_rectangle_height, Vector2(top_left[0], y_split), bottom_right)
+        tl1 = top_left
+        br1 = Vector2(bottom_right[0], y_split)
+        tl2 = Vector2(top_left[0], y_split)
+        br2 = bottom_right
+
+    draw_mondrian(screen, min_rectangle_width, min_rectangle_height, tl1, br1)
+    draw_mondrian(screen, min_rectangle_width, min_rectangle_height, tl2, br2)
 
 pygame.init()
 screen = pygame.display.set_mode((width, height))
